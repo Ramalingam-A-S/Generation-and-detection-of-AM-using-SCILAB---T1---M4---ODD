@@ -3,6 +3,8 @@
 
 To generate and detect the amplitude modulation and demodulation using SCILAB and to calculate modulation index of AM.
 
+![Aim and Record](images/page_2.png)
+
 # EQUIPMENTS REQUIRED
 
 * Computer with i3 Processor
@@ -82,25 +84,66 @@ Compare the original modulating signal with the demodulated signal.
 * If any Error, correct it in code and execute again.
 * Verify the generated waveform using Tabulation and Model Waveform.
 
+# PROGRAM / CODE
+
+```scilab
+Em = 10;
+Fm = 300;
+Ec = 20;
+Fc = 3000;
+Fs = 30000;
+
+t = 0:1/Fs:3/Fm;
+am = Em * sin(2 * %pi * Fm * t);
+subplot(3, 1, 1);
+plot(t, am);
+title("Message Signal");
+
+c = Ec * sin(2 * %pi * Fc * t);
+subplot(3, 1, 2);
+plot(t, c);
+title("Carrier Signal");
+
+eam = (Ec + am) .* cos(2 * %pi * Fc * t);
+subplot(3, 1, 3);
+plot(t, eam);
+title("Am Waves");
+```
+
+# OUTPUT / MODEL GRAPHS
+
+![Scilab Output Waveforms](images/page_1.png)
+
 # TABULATION
 
 | Sl. No. | Signal             | Amplitude (V) Theory | Amplitude (V) Practical | Frequency (Hz) Theory | Frequency (Hz) Practical |
 | ------- | ------------------ | -------------------- | ----------------------- | --------------------- | ------------------------ |
-| 1       | Message Signal     |                      |                         |                       |                          |
-| 2       | Carrier Signal     |                      |                         |                       |                          |
-| 3       | Modulated Signal   |                      |                         |                       |                          |
-| 4       | Demodulated Signal |                      |                         |                       |                          |
+| 1       | Message Signal     | 10                   | 10                      | 300                   | 300                      |
+| 2       | Carrier Signal     | 20                   | 20                      | 3000                  | 3000                     |
+| 3       | Modulated Signal   | -                    | Emax = 30, Emin = 10    | -                     | 3000                     |
+| 4       | Demodulated Signal | 10                   | 10                      | 300                   | 300                      |
 
 **Modulated Signal:**
 
-* Emax =
-* Emin =
+* Emax = 30 V
+* Emin = 10 V
+
+![Tabulation](images/page_3.png)
 
 # CALCULATION
 
-1. **ma (Theory) = am/ac =**
+1. **ma (Theory) = am / ac = 10 / 20 = 0.5**
 
-2. **ma (Practical) = (Emax - Emin) / (Emax + Emin) =**
+2. **ma (Practical) = (Emax - Emin) / (Emax + Emin) = (30 - 10) / (30 + 10) = 20 / 40 = 0.5**
 
+$$\therefore (M_a)_{Theory} = (M_a)_{Practical} = 0.5$$
 
+![Calculations](images/page_4.png)
 
+# RESULT
+
+AM waves are successfully generated and detected using SCILAB, and the modulation index is calculated:
+- Theoretical Modulation Index, $m_a = 0.5$
+- Practical Modulation Index, $m_a = 0.5$
+
+![Result](images/page_4.png)
